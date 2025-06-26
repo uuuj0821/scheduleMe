@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>✍ 새 일정 추가</h2>
+  <form method="post" class="notepad-card">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-pastel">등록</button>
+    <a href="{% url 'todo_list' %}" class="btn btn-secondary">취소</a>
+  </form>
+{% endblock %}

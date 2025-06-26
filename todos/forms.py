@@ -1,0 +1,10 @@
+from django import forms
+from .models import Todo
+
+class TodoForm(forms.ModelForm):
+    class Meta:
+        model = Todo
+        fields = ['content']
+        labels = {
+            'content' : '할 일 내용',
+        }
