@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>📋 나의 일정 목록</h2>
+
+<a href="{% url 'add_todo' %}" class="btn btn-pastel mb-3">+ 새 일정 추가</a>
+
+<div>
+  {% for todo in todos %}
+    <div class="notepad-card d-flex justify-content-between align-items-center">
+      <span class="{% if todo.is_completed %}completed{% endif %}">
+        {{ todo.content }}
+      </span>
+      <span>
+        {% if not todo.is_completed %}
+          <a href="{% url 'complete_todo' todo.pk %}" class="btn btn-success btn-sm">✔ 완료</a>
+        {% endif %}
+        <a href="{% url 'delete_todo' todo.pk %}" class="btn btn-danger btn-sm">🗑 삭제</a>
+      </span>
+    </div>
+  {% empty %}
+    <p>등록된 일정이 없습니다.</p>
+  {% endfor %}
+</div>
+{% endblock %}
